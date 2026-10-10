@@ -266,10 +266,10 @@ export interface UserFocusStats {
 export function loadFocusStats(): UserFocusStats {
   try {
     const raw = localStorage.getItem(STORAGE_FOCUS_STATS_KEY);
-    if (!raw) return { totalFocusMinutes: 125, completedSessions: 5 };
+    if (!raw) return { totalFocusMinutes: 0, completedSessions: 0 };
     return JSON.parse(raw);
   } catch {
-    return { totalFocusMinutes: 125, completedSessions: 5 };
+    return { totalFocusMinutes: 0, completedSessions: 0 };
   }
 }
 
