@@ -126,7 +126,7 @@ export function getInitialHabits(): Habit[] {
       frequencyDays: [0, 1, 2, 3, 4, 5, 6],
       reminderTime: '07:30',
       streakType: 'daily',
-      completions: generateHistory(0.85, 1),
+      completions: {},
       createdAt: new Date(Date.now() - 60 * 86400000).toISOString(),
     },
     {
@@ -140,7 +140,7 @@ export function getInitialHabits(): Habit[] {
       frequencyDays: [1, 2, 3, 4, 5],
       reminderTime: '09:00',
       streakType: 'daily',
-      completions: generateHistory(0.8, 1),
+      completions: {},
       createdAt: new Date(Date.now() - 75 * 86400000).toISOString(),
     },
     {
@@ -153,7 +153,7 @@ export function getInitialHabits(): Habit[] {
       targetPerDay: 8,
       frequencyDays: [0, 1, 2, 3, 4, 5, 6],
       streakType: 'daily',
-      completions: generateHistory(0.9, 8),
+      completions: {},
       createdAt: new Date(Date.now() - 90 * 86400000).toISOString(),
     },
     {
@@ -167,7 +167,7 @@ export function getInitialHabits(): Habit[] {
       frequencyDays: [0, 1, 2, 3, 4, 5, 6],
       reminderTime: '21:30',
       streakType: 'daily',
-      completions: generateHistory(0.72, 1),
+      completions: {},
       createdAt: new Date(Date.now() - 45 * 86400000).toISOString(),
     },
     {
@@ -181,7 +181,7 @@ export function getInitialHabits(): Habit[] {
       frequencyDays: [1, 2, 3, 4, 5, 6],
       reminderTime: '17:30',
       streakType: 'daily',
-      completions: generateHistory(0.68, 1),
+      completions: {},
       createdAt: new Date(Date.now() - 50 * 86400000).toISOString(),
     },
   ];
