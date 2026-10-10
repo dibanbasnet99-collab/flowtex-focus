@@ -107,21 +107,20 @@ export const LeaderboardModal: React.FC<LeaderboardModalProps> = ({
     // 3. Ensure current user is included or updated with current session stats
     const currentUid = currentUser?.uid || 'local-current-user';
     const existing = map.get(currentUid);
-    const userMinutes = Math.max(userStats.totalFocusMinutes, existing?.totalFocusMinutes || 0);
+   const userMinutes = Math.max(userStats.totalFocusMinutes, existing?.totalFocusMinutes || 0);
     const userSessions = Math.max(userStats.completedSessions, existing?.completedSessions || 0);
     const userStreak = Math.max(userStats.currentStreak, existing?.currentStreak || 0);
     const userHabits = Math.max(userStats.habitsCompletedCount, existing?.habitsCompletedCount || 0);
 
     map.set(currentUid, {
-      userId: currentUid,
-      displayName: currentUser?.displayName || 'You (Local Session)',
-      photoURL: currentUser?.photoURL || undefined,
-      totalFocusMinutes: 0,
-      completedSessions: 0,
-      currentStreak: 0,
-      habitsCompletedCount: 0,
-    });
-
+  userId: currentUid,
+  displayName: currentUser?.displayName || 'You (Local Session)',
+  photoURL: currentUser?.photoURL || undefined,
+  totalFocusMinutes: existing?.totalFocusMinutes || 0,
+  completedSessions: existing?.completedSessions || 0,
+  currentStreak: existing?.currentStreak || 0,
+  habitsCompletedCount: existing?.habitsCompletedCount || 0,
+});
     // Apply timeframe multiplier for realistic dynamic filtering
     const multiplier = timeframe === 'today' ? 0.18 : timeframe === 'weekly' ? 0.45 : 1.0;
 
