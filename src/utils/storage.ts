@@ -252,11 +252,11 @@ export const DEFAULT_PREFERENCES: UserPreferences = {
 };
 
 // --- LocalStorage persistence keys ---
-const STORAGE_HABITS_KEY = 'flocus_habitex_habits_v1';
-const STORAGE_TASKS_KEY = 'flocus_habitex_tasks_v1';
-const STORAGE_PREFS_KEY = 'flocus_habitex_prefs_v1';
-const STORAGE_STATS_KEY = 'flocus_habitex_stats_v1';
-const STORAGE_FOCUS_STATS_KEY = 'flocus_habitex_focus_stats_v1';
+const STORAGE_HABITS_KEY = 'flocus_habitex_habits_v2';
+const STORAGE_TASKS_KEY = 'flocus_habitex_tasks_v2';
+const STORAGE_PREFS_KEY = 'flocus_habitex_prefs_v2';
+const STORAGE_STATS_KEY = 'flocus_habitex_stats_v2';
+const STORAGE_FOCUS_STATS_KEY = 'flocus_habitex_focus_stats_v2';
 
 export interface UserFocusStats {
   totalFocusMinutes: number;
