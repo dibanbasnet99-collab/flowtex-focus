@@ -12,6 +12,9 @@ import { handleFirestoreError, OperationType } from './errorHandler';
 import { Habit, Task, UserPreferences } from '../types';
 
 export async function uploadLocalHabitsToCloud(userId: string, localHabits: Habit[]) {
+  // Prevent uploading default mock habits or cached array if we want a fresh start
+  if (!localHabits || localHabits.length === 0) return;
+
   const collectionPath = `users/${userId}/habits`;
   try {
     for (const habit of localHabits) {
