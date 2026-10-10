@@ -1,0 +1,125 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile document",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "maxLength": 128 },
+        "email": { "type": "string", "maxLength": 256 },
+        "displayName": { "type": "string", "maxLength": 128 },
+        "photoURL": { "type": "string", "maxLength": 512 },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "createdAt"]
+    },
+    "Habit": {
+      "title": "Habit",
+      "description": "User habit tracking item",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "title": { "type": "string", "maxLength": 120 },
+        "description": { "type": "string", "maxLength": 300 },
+        "color": { "type": "string", "maxLength": 30 },
+        "emoji": { "type": "string", "maxLength": 20 },
+        "category": { "type": "string", "maxLength": 50 },
+        "targetPerDay": { "type": "number" },
+        "frequencyDays": { "type": "array" },
+        "reminderTime": { "type": "string", "maxLength": 10 },
+        "streakType": { "type": "string", "enum": ["daily", "weekly", "monthly"] },
+        "completions": { "type": "object" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "userId", "title", "color", "targetPerDay", "streakType", "createdAt"]
+    },
+    "Task": {
+      "title": "Task",
+      "description": "User focus task item",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "title": { "type": "string", "maxLength": 160 },
+        "completed": { "type": "boolean" },
+        "priority": { "type": "string", "enum": ["high", "medium", "low"] },
+        "estimatedSessions": { "type": "number" },
+        "completedSessions": { "type": "number" },
+        "category": { "type": "string", "maxLength": 50 },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "userId", "title", "completed", "priority", "estimatedSessions", "createdAt"]
+    },
+    "UserPreferences": {
+      "title": "UserPreferences",
+      "description": "User settings and audio atmosphere preferences",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "maxLength": 128 },
+        "focusDuration": { "type": "number" },
+        "shortBreakDuration": { "type": "number" },
+        "longBreakDuration": { "type": "number" },
+        "longBreakInterval": { "type": "number" },
+        "autoStartBreaks": { "type": "boolean" },
+        "autoStartFocus": { "type": "boolean" },
+        "backgroundId": { "type": "string", "maxLength": 64 },
+        "backgroundBlur": { "type": "number" },
+        "overlayDarkness": { "type": "number" },
+        "soundVolume": { "type": "number" },
+        "bellVolume": { "type": "number" },
+        "habitSortOrder": { "type": "string", "enum": ["custom", "name", "streak", "category"] },
+        "voiceAnnouncements": { "type": "boolean" },
+        "mechanicalTick": { "type": "boolean" },
+        "youtubeEnabled": { "type": "boolean" },
+        "youtubeVideoId": { "type": "string", "maxLength": 64 },
+        "youtubeVolume": { "type": "number" },
+        "youtubeMuted": { "type": "boolean" },
+        "youtubeShowVideo": { "type": "boolean" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId"]
+    },
+    "LeaderboardEntry": {
+      "title": "LeaderboardEntry",
+      "description": "Public community focus stats for leaderboard rankings",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "maxLength": 128 },
+        "displayName": { "type": "string", "maxLength": 120 },
+        "photoURL": { "type": "string", "maxLength": 512 },
+        "totalFocusMinutes": { "type": "number" },
+        "completedSessions": { "type": "number" },
+        "currentStreak": { "type": "number" },
+        "habitsCompletedCount": { "type": "number" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "displayName", "totalFocusMinutes", "completedSessions"]
+    }
+  },
+  "firestore": {
+    "/leaderboard/{userId}": {
+      "schema": { "$ref": "#/entities/LeaderboardEntry" },
+      "description": "Global leaderboard rankings tracking focus time and habit streaks"
+    },
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/User" },
+      "description": "User profile document containing authentication info"
+    },
+    "/users/{userId}/habits/{habitId}": {
+      "schema": { "$ref": "#/entities/Habit" },
+      "description": "Collection of user habits and daily completion check-ins"
+    },
+    "/users/{userId}/tasks/{taskId}": {
+      "schema": { "$ref": "#/entities/Task" },
+      "description": "Collection of focus tasks and round progression"
+    },
+    "/users/{userId}/preferences/{prefDoc}": {
+      "schema": { "$ref": "#/entities/UserPreferences" },
+      "description": "User personal focus preferences and audio configuration"
+    }
+  }
+}
