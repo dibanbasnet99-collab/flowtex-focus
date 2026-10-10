@@ -116,10 +116,10 @@ export const LeaderboardModal: React.FC<LeaderboardModalProps> = ({
       userId: currentUid,
       displayName: currentUser?.displayName || 'You (Local Session)',
       photoURL: currentUser?.photoURL || undefined,
-      totalFocusMinutes: userMinutes,
-      completedSessions: userSessions,
-      currentStreak: userStreak,
-      habitsCompletedCount: userHabits,
+      totalFocusMinutes: 0,
+      completedSessions: 0,
+      currentStreak: 0,
+      habitsCompletedCount: 0,
     });
 
     // Apply timeframe multiplier for realistic dynamic filtering
